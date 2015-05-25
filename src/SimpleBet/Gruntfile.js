@@ -9,8 +9,29 @@ module.exports = function (grunt) {
 
 	// configure plugins
 	grunt.initConfig({
+		pathConfig: {
+			app: 'Client',
+			webRoot: 'wwwroot',
+			bower: 'bower_components'
+		},
+
+		copy: {
+			code: {
+				expand: true, cwd: '<%= pathConfig.app %>/', src: ['**/*.js', '**/*.html', '**/*.css'], dest: '<%= pathConfig.webRoot%>/'
+			},
+			all: {
+				files: [
+					//all js, html, css, and assets
+					{expand: true, cwd: '<%= pathConfig.app %>/', src: ['**'], dest: '<%= pathConfig.webRoot%>/'},
+					//all dependencies
+					{expand: true, src: ['<%= pathConfig.bower %>/**'], dest: '<%= pathConfig.webRoot%>/'}
+				]
+			}
+		}
 	});
 
 	// define tasks
-	grunt.registerTask('default', []);
+	// grunt.registerTask('default', ['copy:all', 'copy:bower']);
+	grunt.registerTask('all', ['copy:all']);
+	grunt.registerTask('code', ['copy:code']);
 };
