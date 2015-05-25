@@ -1,24 +1,16 @@
-﻿module.exports = function (grunt) {
-    // load Grunt plugins from NPM
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+﻿'use-strict';
 
-    // configure plugins
-    grunt.initConfig({
-        uglify: {
-            my_target: {
-                files: { 'wwwroot/app.js': ['Scripts/app.js', 'Scripts/**/*.js'] }
-            }
-        },
+module.exports = function (grunt) {
+	// Load grunt tasks automatically
+	require('load-grunt-tasks')(grunt);
 
-        watch: {
-            scripts: {
-                files: ['Scripts/**/*.js'],
-                tasks: ['uglify']
-            }
-        }
-    });
+	// Time how long tasks take. Can help when optimizing build times
+	require('time-grunt')(grunt);
 
-    // define tasks
-    grunt.registerTask('default', ['uglify', 'watch']);
+	// configure plugins
+	grunt.initConfig({
+	});
+
+	// define tasks
+	grunt.registerTask('default', []);
 };
